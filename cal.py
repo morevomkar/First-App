@@ -1,52 +1,26 @@
-# calculator.py
-"""Simple calculator library."""
+# Simple Calculator in Python
 
-from math import sqrt
-from typing import Union
+print("----- Simple Calculator -----")
 
-Number = Union[int, float]
+# Taking input from the user
+num1 = float(input("Enter first number: "))
+op = input("Enter operator (+, -, *, /): ")
+num2 = float(input("Enter second number: "))
 
-def add(a: Number, b: Number) -> Number:
-    return a + b
+# Performing calculation
+if op == "+":
+    result = num1 + num2
+elif op == "-":
+    result = num1 - num2
+elif op == "*":
+    result = num1 * num2
+elif op == "/":
+    if num2 == 0:
+        result = "Error! Division by zero."
+    else:
+        result = num1 / num2
+else:
+    result = "Invalid operator!"
 
-def sub(a: Number, b: Number) -> Number:
-    return a - b
-
-def mul(a: Number, b: Number) -> Number:
-    return a * b
-
-def div(a: Number, b: Number) -> Number:
-    if b == 0:
-        raise ZeroDivisionError("Division by zero is not allowed.")
-    return a / b
-
-def power(a: Number, b: Number) -> Number:
-    return a ** b
-
-def sqrt_num(a: Number) -> Number:
-    if a < 0:
-        raise ValueError("Cannot take square root of negative number.")
-    return sqrt(a)
-
-# Optional: a small dispatcher for string operations
-def calculate(op: str, a: Number, b: Number = None) -> Number:
-    """Calculate using operation name. For unary ops pass b=None."""
-    op = op.lower()
-    if op in ("+", "add", "plus"):
-        assert b is not None
-        return add(a, b)
-    if op in ("-", "sub", "minus"):
-        assert b is not None
-        return sub(a, b)
-    if op in ("*", "mul", "times"):
-        assert b is not None
-        return mul(a, b)
-    if op in ("/", "div", "divide"):
-        assert b is not None
-        return div(a, b)
-    if op in ("^", "pow", "power"):
-        assert b is not None
-        return power(a, b)
-    if op in ("sqrt", "root"):
-        return sqrt_num(a)
-    raise ValueError(f"Unknown operation: {op}")
+# Displaying result
+print("Result:", result)
